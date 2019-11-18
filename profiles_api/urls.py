@@ -13,6 +13,7 @@ router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
 
 # query set을 가지면 쿼리는 어떤 모델을 참조 할 지 자동으로 알게된다.
 router.register('profile', views.UserProfileViewSet)
+router.register('feed', views.UserProfileFeedViewSet)
 
 urlpatterns = [
     path('hello-view/', views.HelloApiView.as_view()),
