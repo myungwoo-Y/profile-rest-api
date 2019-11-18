@@ -11,7 +11,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserProfile
-        fields = ('id', 'email', 'name', 'password')
+        fields = ('id', 'name', 'password')
         # 비밀번호는 다시 쓰기만 가능하도록 설정
         extra_kwargs = {
             'password' : {
@@ -26,11 +26,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create and return a new user"""
         user = models.UserProfile.objects.create_user(
-            email=validated_data['email'],
             name=validated_data['name'],
             password=validated_data['password'],
         )
-
         return user
 
 class ProfileFeedItemSerializer(serializers.ModelSerializer):
