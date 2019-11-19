@@ -8,13 +8,13 @@ from django.conf import settings
 class UserProfileManager(BaseUserManager):
     """Manager for user profile"""
 
-    def create_user(self, email, name, gender, password=None):
+    def create_user(self, email, name, gender, image, password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('User must have an email address')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=name, gender=gender)
+        user = self.model(email=email, name=name, gender=gender, image=image)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -35,6 +35,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=10)
+    image = models.ImageField(upload_to='images')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 

@@ -11,7 +11,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserProfile
-        fields = ('id', 'email', 'name', 'gender', 'password')
+        fields = ('id', 'email', 'name', 'gender', 'password', 'image')
         # 비밀번호는 다시 쓰기만 가능하도록 설정
         extra_kwargs = {
             'password' : {
@@ -29,6 +29,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             name=validated_data['name'],
             gender=validated_data['gender'],
+            image=validated_data['image'],
             password=validated_data['password'],
         )
 

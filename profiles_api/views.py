@@ -106,7 +106,6 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = models.UserProfile.objects.all()
     # 인증방식을 Token으로 한다는 의미이다.
     authentication_classes = (TokenAuthentication, )
-    permission_classes = (permissions.UpdateOwnProfile, )
     filter_backends = (filters.SearchFilter, )
     search_fields = ('name', 'email',)
 
